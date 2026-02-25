@@ -2,13 +2,13 @@ package array;
 
 import java.util.EmptyStackException;
 
-public class Array {
+public class Array<T> {
 
-    private int[] arr;
+    private Object[] arr;
     private int size;
 
     public Array(int capacity) {
-        this.arr = new int[capacity];
+        this.arr = new Object[capacity];
         this.size = 0;
     }
 
@@ -20,14 +20,15 @@ public class Array {
         return size == 0;
     }
 
-    public int get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        return arr[index];
+        //noinspection unchecked
+        return (T) arr[index];
     }
 
-    public void add(int value) throws FullArrayException {
+    public void add(T value) throws FullArrayException {
         if (size >= arr.length) {
             throw new FullArrayException();
         }
@@ -43,7 +44,7 @@ public class Array {
             arr[i] = arr[i + 1];
         }
         size--;
-        arr[size] = 0;
+        arr[size] = null;
     }
 }
 
