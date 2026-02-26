@@ -1,6 +1,6 @@
 package queue;
 
-public class EmptyQueueException extends RuntimeException {
+public class EmptyQueueException extends Exception {
 
     public EmptyQueueException() {}
 

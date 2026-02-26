@@ -1,6 +1,6 @@
 package stack;
 
-public class FullStackException extends RuntimeException {
+public class FullStackException extends Exception {
 
     public FullStackException() {}
 
