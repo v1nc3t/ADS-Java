@@ -1,27 +1,25 @@
 package list;
 
-public class DLList<T> {
+public class SLList<T> {
 
-    private DNode<T> head;
+    private SNode<T> head;
 
-    private DNode<T> tail;
+    private SNode<T> tail;
 
-    public DLList() {
+    private int size;
+
+    public SLList() {
         head = null;
         tail = null;
+        size = 0;
     }
+
     public int size() {
-        int size = 0;
-        DNode<T> current = head;
-        while (current != null) {
-            current = current.getNext();
-            size++;
-        }
         return size;
     }
 
     public boolean isEmpty() {
-        return head == null;
+        return size == 0;
     }
 
     public T getHead() {
@@ -39,27 +37,27 @@ public class DLList<T> {
     }
 
     public void addFirst(T element) {
-        DNode<T> newNode = new DNode<>(element, null, null);
+        SNode<T> newNode = new SNode<>(element, null);
         if (head == null) {
             head = newNode;
             tail = newNode;
         } else {
             newNode.setNext(head);
-            head.setPrev(newNode);
             head = newNode;
         }
+        size++;
     }
 
-    public void addLast(T element) {
-        DNode<T> newNode = new DNode<>(element, null, null);
+    public void addTail(T element) {
+        SNode<T> newNode = new SNode<>(element, null);
         if (tail == null) {
             head = newNode;
             tail = newNode;
         } else {
-            newNode.setPrev(tail);
             tail.setNext(newNode);
             tail = newNode;
         }
+        size++;
     }
 
     public T removeFirst() {
@@ -70,23 +68,28 @@ public class DLList<T> {
         head = head.getNext();
         if (head == null) {
             tail = null;
-        } else {
-            head.setPrev(null);
         }
+        size--;
         return element;
     }
 
     public T removeLast() {
-        if (tail == null) {
+        if (isEmpty()) {
             return null;
         }
         T element = tail.getElement();
-        tail = tail.getPrev();
-        if (tail == null) {
+        if (head == tail) {
             head = null;
+            tail = null;
         } else {
-            tail.setNext(null);
+            SNode<T> current = head;
+            while (current.getNext() != tail) {
+                current = current.getNext();
+            }
+            current.setNext(null);
+            tail = current;
         }
+        size--;
         return element;
     }
 }
