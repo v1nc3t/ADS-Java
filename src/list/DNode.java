@@ -12,12 +12,6 @@ public class DNode<T> {
         setElement(element);
         setPrev(prev);
         setNext(next);
-        if (prev == null) {
-            this.prev = this;
-        }
-        if (next == null) {
-            this.next = this;
-        }
     }
 
     public T getElement() {
