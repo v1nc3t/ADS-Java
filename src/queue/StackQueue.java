@@ -36,7 +36,7 @@ public class StackQueue<T> {
         }
     }
 
-    public T dequeue() {
+    public T dequeue() throws EmptyQueueException {
         if (isEmpty()) {
             throw new EmptyQueueException();
         }
@@ -44,7 +44,7 @@ public class StackQueue<T> {
         return stackOut.pop();
     }
 
-    public T first() {
+    public T first() throws EmptyQueueException {
         if (isEmpty()) {
             throw new EmptyQueueException();
         }

@@ -2,7 +2,7 @@ package queue;
 
 public final class QueueUtils {
 
-    public static <T> void reverse(Queue<T> queue) {
+    public static <T> void reverse(Queue<T> queue) throws EmptyQueueException {
         if (queue.isEmpty()) {
             return;
         }

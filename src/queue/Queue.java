@@ -18,7 +18,7 @@ public class Queue<T> {
         list.addLast(t);
     }
 
-    public T dequeue() {
+    public T dequeue() throws EmptyQueueException {
         if (list.isEmpty()) {
             throw new EmptyQueueException();
         }

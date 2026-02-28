@@ -28,7 +28,6 @@ public class Stack<T> {
         if (size == 0) {
             throw new EmptyStackException();
         }
-        //noinspection unchecked
         return (T) elements[size - 1];
     }
 
@@ -37,13 +36,12 @@ public class Stack<T> {
             throw new EmptyStackException();
         }
         size--;
-        //noinspection unchecked
         T res = (T) elements[size];
         elements[size] = null;
         return res;
     }
 
-    public void push(T element) {
+    public void push(T element) throws FullStackException {
         if (isFull()) {
             throw new FullStackException();
         }
