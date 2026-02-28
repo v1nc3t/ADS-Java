@@ -28,7 +28,6 @@ public class DynamicStack<T> {
         if (size == 0) {
             throw new EmptyStackException();
         }
-        //noinspection unchecked
         return (T) elements[size - 1];
     }
 
@@ -37,7 +36,6 @@ public class DynamicStack<T> {
             throw new EmptyStackException();
         }
         size--;
-        //noinspection unchecked
         T res = (T) elements[size];
         elements[size] = null;
 
