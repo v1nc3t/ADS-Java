@@ -1,6 +1,10 @@
 package tree;
 
+import queue.EmptyQueueException;
+import queue.Queue;
+
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class TreeUtils {
 
@@ -20,4 +24,29 @@ public class TreeUtils {
         return new Tree<T>(t.getObject(), copyChildren);
     }
 
+    public static boolean isBinaryTreeComplete(SimpleBinaryTree root) throws EmptyQueueException {
+        if (root == null) {
+            return true;
+        }
+
+        Queue<SimpleBinaryTree> queue = new Queue<>();
+        queue.enqueue(root);
+
+        boolean foundNull = false;
+
+        while (!queue.isEmpty()) {
+            SimpleBinaryTree current = queue.dequeue();
+
+            if (current == null) {
+                foundNull = true;
+            } else {
+                if (foundNull) {
+                    return false;
+                }
+                queue.enqueue(current.getLeft());
+                queue.enqueue(current.getRight());
+            }
+        }
+        return true;
+    }
 }
