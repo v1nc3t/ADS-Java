@@ -7,9 +7,9 @@ public class DynamicStack<T> {
     private int capacity;
 
     public DynamicStack() {
+        this.capacity = 1;
         this.elements = new Object[capacity];
         this.size = 0;
-        this.capacity = 1;
     }
 
     public int size() {
@@ -40,7 +40,8 @@ public class DynamicStack<T> {
         elements[size] = null;
 
         if (capacity > 1 && size < capacity * 0.25) {
-            Object[] newElements = new Object[capacity / 2];
+            this.capacity /= 2;
+            Object[] newElements = new Object[capacity];
             for (int i = 0; i < size; i++) {
                 newElements[i] = elements[i];
             }
@@ -51,7 +52,8 @@ public class DynamicStack<T> {
 
     public void push(T element) {
         if (isFull()) {
-            Object[] newElements = new Object[capacity * 2];
+            this.capacity *= 2;
+            Object[] newElements = new Object[capacity];
             for (int i = 0; i < size; i++) {
                 newElements[i] = elements[i];
             }
