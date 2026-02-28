@@ -64,7 +64,7 @@ public class TreeUtils {
      * @param t2 - second tree to sum values for
      * @return a new tree in which every node contains the sum of the values of the nodes at the corresponding positions in t1 and t2
      */
-    public static Tree<Integer> sum(Tree<Integer> t1, Tree<Integer> t2) {
+    public static Tree<Integer> sumSame(Tree<Integer> t1, Tree<Integer> t2) {
         if (t1 == null && t2 == null) {
             return null;
         }
@@ -73,9 +73,32 @@ public class TreeUtils {
         List<Tree<Integer>> c2 = t2.getChildren();
 
         for (int i = 0; i < c1.size(); i++) {
-            sumChildren.add(sum(c1.get(i), c2.get(i)));
+            sumChildren.add(sumSame(c1.get(i), c2.get(i)));
         }
         return new Tree<>(t1.getObject() + t2.getObject(), sumChildren);
+    }
 
+    public static Tree<Integer> sumDifferent(Tree<Integer> t1, Tree<Integer> t2) throws DifferentShapesException {
+        if (t1 == null && t2 == null) {
+            return null;
+        }
+        if (t1 == null) {
+            throw new DifferentShapesException();
+        }
+        if (t2 == null) {
+            throw new DifferentShapesException();
+        }
+        List<Tree<Integer>> sumChildren = new ArrayList<>();
+        List<Tree<Integer>> c1 = t1.getChildren();
+        List<Tree<Integer>> c2 = t2.getChildren();
+
+        if (c1.size() != c2.size()) {
+            throw new DifferentShapesException();
+        }
+
+        for (int i = 0; i < c1.size(); i++) {
+            sumChildren.add(sumDifferent(c1.get(i), c2.get(i)));
+        }
+        return new Tree<>(t1.getObject() + t2.getObject(), sumChildren);
     }
 }
