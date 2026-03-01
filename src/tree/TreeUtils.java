@@ -2,12 +2,137 @@ package tree;
 
 import queue.EmptyQueueException;
 import queue.Queue;
+import stack.DynamicStack;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class TreeUtils {
+
+    public static <T> List<T> preOrderIterative(BinaryTree<T> tree) {
+        List<T> result = new ArrayList<>();
+        if (tree == null || tree.getRoot() == null) {
+            return result;
+        }
+
+        DynamicStack<TNode<T>> stack = new DynamicStack<>();
+        stack.push(tree.getRoot());
+        while (!stack.isEmpty()) {
+            TNode<T> node = stack.pop();
+
+            result.add(node.getValue());
+
+            if (node.getLeft() != null) {
+                stack.push(node.getLeft());
+            }
+
+            if (node.getRight() != null) {
+                stack.push(node.getRight());
+            }
+        }
+        return result;
+    }
+
+    public static <T> List<T> preOrderRecursive(BinaryTree<T> tree) {
+        List<T> result = new ArrayList<>();
+        if (tree != null) {
+            preOrder(tree.getRoot(), result);
+        }
+        return result;
+    }
+
+    private static <T> void preOrder(TNode<T> node, List<T> result) {
+        if (node == null) {
+            return;
+        }
+        result.add(node.getValue());
+        preOrder(node.getLeft(), result);
+        preOrder(node.getRight(), result);
+    }
+
+    public static <T> List<T> inOrderIterative(BinaryTree<T> tree) {
+        List<T> result = new ArrayList<>();
+        if (tree == null || tree.getRoot() == null) {
+            return result;
+        }
+
+        DynamicStack<TNode<T>> stack = new DynamicStack<>();
+        stack.push(tree.getRoot());
+        while (!stack.isEmpty()) {
+            TNode<T> node = stack.pop();
+
+            if (node.getLeft() != null) {
+                stack.push(node.getLeft());
+            }
+
+            result.add(node.getValue());
+
+            if (node.getRight() != null) {
+                stack.push(node.getRight());
+            }
+        }
+        return result;
+    }
+
+    public static <T> List<T> inOrderRecursive(BinaryTree<T> tree) {
+        List<T> result = new ArrayList<>();
+        if (tree != null) {
+            inOrder(tree.getRoot(), result);
+        }
+        return result;
+    }
+
+    private static <T> void inOrder(TNode<T> node, List<T> result) {
+        if (node == null) {
+            return;
+        }
+        inOrder(node.getLeft(), result);
+        result.add(node.getValue());
+        inOrder(node.getRight(), result);
+    }
+
+    public static <T> List<T> postOrderIterative(BinaryTree<T> tree) {
+        List<T> result = new ArrayList<>();
+        if (tree == null || tree.getRoot() == null) {
+            return result;
+        }
+
+        DynamicStack<TNode<T>> stack = new DynamicStack<>();
+        stack.push(tree.getRoot());
+        while (!stack.isEmpty()) {
+            TNode<T> node = stack.pop();
+
+            if (node.getLeft() != null) {
+                stack.push(node.getLeft());
+            }
+
+            result.add(node.getValue());
+
+            if (node.getRight() != null) {
+                stack.push(node.getRight());
+            }
+        }
+        return result;
+    }
+
+    public static <T> List<T> postOrderRecursive(BinaryTree<T> tree) {
+        List<T> result = new ArrayList<>();
+        if (tree != null) {
+            postOrder(tree.getRoot(), result);
+        }
+        return result;
+    }
+
+    private static <T> void postOrder(TNode<T> node, List<T> result) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.getLeft(), result);
+        postOrder(node.getRight(), result);
+        result.add(node.getValue());
+    }
+
 
     /**
      * Creates a hard copy of the n-ary tree.
