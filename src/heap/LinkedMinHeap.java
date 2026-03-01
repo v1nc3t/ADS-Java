@@ -47,18 +47,20 @@ public class LinkedMinHeap<T extends Comparable<T>> {
     }
 
     private void insertAtLast(HNode<T> newNode) {
-        String path = Integer.toBinaryString(size + 1).substring(1);
+        int target = size + 1;
+        int h = (int) (Math.log(target) / Math.log(2));
 
         HNode<T> curr = root;
-        for (int i = 0; i < path.length() - 1; i++) {
-            if (path.charAt(i) == '0') {
-                curr = curr.getLeft();
+        int mask = 1 << (h - 1);
+        while (mask > 1) {
+            if ((target & mask) == 0) {
+                curr =  curr.getLeft();
             } else {
                 curr = curr.getRight();
             }
+            mask >>= 1;
         }
-
-        if (path.charAt(path.length() - 1) == '0') {
+        if ((target & 1) == 0) {
             curr.setLeft(newNode);
         } else {
             curr.setRight(newNode);
@@ -112,14 +114,20 @@ public class LinkedMinHeap<T extends Comparable<T>> {
     }
 
     private HNode<T> findLastNode() {
-        String path = Integer.toBinaryString(size).substring(1);
+        if (root == null || size == 0) {
+            return null;
+        }
+        int h = (int) (Math.log(size) / Math.log(2));
+
         HNode<T> curr = root;
-        for (int i = 0; i < path.length(); i++) {
-            if (path.charAt(i) == '0') {
+        int mask = 1 << (h - 1);
+        while (mask > 0) {
+            if ((size & mask) == 0) {
                 curr = curr.getLeft();
             } else {
                 curr = curr.getRight();
             }
+            mask >>= 1;
         }
         return curr;
     }
