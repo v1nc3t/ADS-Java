@@ -10,6 +10,30 @@ import java.util.List;
 
 public class TreeUtils {
 
+    public static <T> List<T> breadthFirstSearch(BinaryTree<T> tree) throws EmptyQueueException {
+        List<T> result = new ArrayList<>();
+        if (tree == null || tree.getRoot() == null) {
+            return result;
+        }
+
+        Queue<TNode<T>> queue = new Queue<>();
+        queue.enqueue(tree.getRoot());
+
+        while (!queue.isEmpty()) {
+            TNode<T> node = queue.dequeue();
+            result.add(node.getValue());
+
+            if (node.getLeft() != null) {
+                queue.enqueue(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                queue.enqueue(node.getRight());
+            }
+        }
+        return result;
+    }
+
+
     public static <T> List<T> preOrderIterative(BinaryTree<T> tree) {
         List<T> result = new ArrayList<>();
         if (tree == null || tree.getRoot() == null) {
