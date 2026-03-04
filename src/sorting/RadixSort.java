@@ -14,14 +14,17 @@ public final class RadixSort {
         int[] output = new int[n];
         int[] count = new int[10];
 
+        // count frequency of digits
         for (int i = 0; i < n; i++) {
             count[(arr[i] / exp) % 10]++;
         }
 
+        // create the prefix sum
         for (int i = 1; i < 10; i++) {
             count[i] += count[i - 1];
         }
 
+        // order based on digit using prefix sum
         for (int i = n - 1; i >= 0; i--) {
             output[count[(arr[i] / exp) % 10] - 1] = arr[i];
             count[(arr[i] / exp) % 10]--;
