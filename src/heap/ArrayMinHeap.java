@@ -12,10 +12,11 @@ public class ArrayMinHeap {
     }
 
     public ArrayMinHeap(int[] arr) {
-        this.values = arr;
-        size = arr.length;
-        System.arraycopy(arr, 0, values, 0, size);
-        for (int i = (arr.length / 2) - 1; i >= 0; i--) {
+        this.values = new int[arr.length];
+        this.size = arr.length;
+        System.arraycopy(arr, 0, this.values, 0, size);
+
+        for (int i = (size / 2) - 1; i >= 0; i--) {
             bubbleDown(i);
         }
     }
