@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.*;
 import sorting.*;
 
-import static org.junit.Assert.assertArrayEquals;
-
 class SortingTest {
 
     @Test
