@@ -2,6 +2,8 @@
   <dictionary name="project">
     <words>
       <w>heapify</w>
+      <w>vmax</w>
+      <w>vmin</w>
     </words>
   </dictionary>
 </component>
