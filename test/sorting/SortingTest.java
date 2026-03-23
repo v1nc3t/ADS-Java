@@ -1,5 +1,6 @@
+package sorting;
+
 import org.junit.jupiter.api.*;
-import sorting.*;
 
 class SortingTest {
 
