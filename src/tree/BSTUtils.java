@@ -18,7 +18,7 @@ public final class BSTUtils {
         return result;
     }
 
-    private static <V> void reverseInOrder(TNode<Integer> node, List<Integer> result) {
+    private static void reverseInOrder(TNode<Integer> node, List<Integer> result) {
         if (node == null) {
             return;
         }
