@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class MultiMap {
 
-    private Map<Integer, List<Integer>> map;
+    private final Map<Integer, List<Integer>> map;
 
     /**
      * Creates a new MultiMap.
