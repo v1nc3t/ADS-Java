@@ -36,7 +36,7 @@ public final class BSTUtils {
      * @return true iff the BinaryTree is a binary search tree, else false.
      */
     public static boolean isTreeBST(BinaryTree<Integer> tree) {
-        return isBSTHelper(tree.getRoot(), Integer.MIN_VALUE, Integer.MIN_VALUE);
+        return isBSTHelper(tree.getRoot(), Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private static boolean isBSTHelper(TNode<Integer> node, int mn, int mx) {
@@ -85,5 +85,17 @@ public final class BSTUtils {
         }
 
         return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+
+    /**
+     * Computes whether the BinaryTree is an AVL tree.
+     *
+     * @param tree
+     *     the BinaryTree to check.
+     * @return true iff the BinaryTree is an AVL tree, else false.
+     */
+    public static boolean isTreeAVL(BinaryTree<Integer> tree) {
+        return isTreeBST(tree) && isTreeBalanced(tree);
     }
 }
